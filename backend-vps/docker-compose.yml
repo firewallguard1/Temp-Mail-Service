@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+      - "25:2525" # SMTP Port
+    environment:
+      - REDIS_URL=redis://redis:6379
+      - JWT_SECRET=NetworkNinjas_Secret_99
+    depends_on:
+      - redis
+  redis:
+    image: "redis:alpine"
